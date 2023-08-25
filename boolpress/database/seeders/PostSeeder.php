@@ -11,6 +11,7 @@ class PostSeeder extends Seeder
 {
     public function run(Faker $faker): void
     {
+
         //
         for ($i = 0; $i < 100; $i++) {
             $newPost = new Post();
