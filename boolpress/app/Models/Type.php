@@ -10,7 +10,7 @@ class Type extends Model
 {
     use HasFactory;
 
-    public function post()
+    public function posts()
     {
         return $this->hasMany(Post::class);
     }

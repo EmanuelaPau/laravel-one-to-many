@@ -16,10 +16,11 @@ class Post extends Model
         'content',
         'image',
         'author',
-        'slug'
+        'slug',
+        'title_id'
     ];
 
-    public function types()
+    public function type()
     {
         return $this->belongsTo(Type::class, 'type_id');
     }
