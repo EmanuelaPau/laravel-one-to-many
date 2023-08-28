@@ -12,14 +12,14 @@ class PostSeeder extends Seeder
 {
     public function run(Faker $faker): void
     {
-        $types = Type::all();
+        $typeIds = Type::all()->pluck('id');
 
 
         //
         for ($i = 0; $i < 100; $i++) {
             $newPost = new Post();
             $newPost->title = ucfirst($faker->unique()->sentence());
-            $newPost->type_id = $faker->randomElements($types);
+            $newPost->type_id = $faker->randomElements($typeIds);
             $newPost->content = $faker->paragraph(8, true);
             $newPost->slug = $faker->slug();
             $newPost->image = $faker->imageUrl(640, 480, 'Post', true);
