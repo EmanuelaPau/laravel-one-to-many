@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Post as Post;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -43,6 +44,7 @@ class PostController extends Controller
                 'author' => ['required', 'max:255'],
                 'content' => ['required', ''],
                 'image' => ['file'],
+                'type_id' => ['required', 'exists:types,id'],
             ]
 
         );
@@ -72,7 +74,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         // $post = Post::findOrFail($id);
-        return view('admin.post.edit', compact('post'));
+        $types = Type::all();
+        return view('admin.post.edit', compact('post', 'types'));
 
         //
     }
@@ -89,7 +92,8 @@ class PostController extends Controller
                 'title' => ['required', 'max:255', Rule::unique('posts')->ignore($post->id)],
                 'author' => ['required', 'max:255'],
                 'content' => ['required', ''],
-                'image' => ['files'],
+                'image' => ['image', 'max:512'],
+                'type_id' => ['required', 'exists:types,id']
             ]
 
         );

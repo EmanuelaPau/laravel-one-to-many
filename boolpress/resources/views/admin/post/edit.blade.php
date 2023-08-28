@@ -21,6 +21,18 @@
                     <label for="author" class="form-label">Author Name</label>
                     <input type="text" class="form-control" id="exampleAuthor" name="author" placeholder="write here author name" value="{{old('author', $post->author)}}">
                 </div>
+                <label for="type" class="form-label">Type</label>
+                <select class="form-select mb-3" aria-label="Default select example">
+                    @error('author')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    <option selected>Select a type</option>
+                    @foreach($types as $type) {
+                        <option name="type" value="{{$type->id}}"> {{ old('type_id', $post->type_id) == $type->id ? '>' : '' }}
+                            {{ $type->name }}
+                        </option>
+                    @endforeach
+                </select>
                 @error('image')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
