@@ -13,11 +13,12 @@ class Post extends Model
     use SoftDeletes;
     protected $fillable = [
         'title',
+        'type_id',
         'content',
         'image',
         'author',
         'slug',
-        'title_id'
+
     ];
 
     public function type()
