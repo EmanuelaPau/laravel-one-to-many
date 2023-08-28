@@ -28,7 +28,8 @@ class PostController extends Controller
     public function create()
     {
         //
-        return view('admin.post.create');
+        $types = Type::all();
+        return view('admin.post.create', compact('types'));
 
     }
 
@@ -49,10 +50,12 @@ class PostController extends Controller
 
         );
         $data['slug'] = Str::of($data['title'])->slug('-');
+
         if ($request->hasFile('image')) {
             $img_path = \Storage::put('uploads/posts', $request['image']);
             $data['image'] = $img_path;
         }
+        // $data['type_id'] = Type::type()->id;
         $newPost = new Post;
         $newPost = Post::create($data);
         return redirect()->route('admin.posts.show', $newPost);
