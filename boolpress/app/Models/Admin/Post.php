@@ -21,6 +21,6 @@ class Post extends Model
 
     public function types()
     {
-        return $this->belongsTo(Type::class);
+        return $this->belongsTo(Type::class, 'type_id');
     }
 }
